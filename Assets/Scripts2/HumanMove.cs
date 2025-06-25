@@ -50,7 +50,6 @@ public class HumanMove : MonoBehaviour
         if (direction != Vector3.zero)
         {
             transform.Translate(direction * speed * Time.deltaTime);
-            //    animator.Play("Move");
         }
         animator.SetFloat("speed", direction.magnitude);
     }
