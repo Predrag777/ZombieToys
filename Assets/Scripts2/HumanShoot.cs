@@ -29,18 +29,27 @@ public class HumanShoot : MonoBehaviour
     {
         Ray ray = new Ray(shootPosition.position, shootPosition.forward);
         RaycastHit hit;
-        Debug.Log("Pucaj");
+
+        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, 1f); // Debug linija
+
         if (Physics.Raycast(ray, out hit, distance))
         {
+            Debug.Log("Hit: " + hit.collider.name);
+
             if (hit.collider.CompareTag("enemy"))
             {
-                //Destroy(hit.collider.gameObject);
-                Debug.Log("Kill");
+                Enemy hitEnemy = hit.collider.GetComponentInParent<Enemy>();
+                if (hitEnemy != null)
+                {
+                    hitEnemy.TakeDamage(100f);
+                    Debug.Log("Kill!");
+                }
             }
             else
             {
-                Debug.Log("Missed");
+                Debug.Log("Missed!");
             }
         }
     }
+
 }
