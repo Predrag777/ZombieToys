@@ -9,10 +9,13 @@ public class HumanShoot : MonoBehaviour
 
     [SerializeField] private float distance = 100f;
 
+    [SerializeField] private AudioClip shootSound;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -29,30 +32,15 @@ public class HumanShoot : MonoBehaviour
     void Shoot()
     {
         Ray ray = new Ray(shootPosition.position, shootPosition.forward);
-        RaycastHit hit;
 
-        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, 1f); 
         storm.transform.position = shootPosition.position;
         storm.transform.rotation = Quaternion.LookRotation(ray.direction);
         storm.Play();
-        /*if (Physics.Raycast(ray, out hit, distance))
-        {
-            Debug.Log("Hit: " + hit.collider.name);
 
-            if (hit.collider.CompareTag("enemy"))
-            {
-                Enemy hitEnemy = hit.collider.GetComponentInParent<Enemy>();
-                if (hitEnemy != null)
-                {
-                    hitEnemy.TakeDamage(100f);
-                    Debug.Log("Kill!");
-                }
-            }
-            else
-            {
-                Debug.Log("Missed!");
-            }
-        }*/
+        if (shootSound != null)
+    {
+        AudioSource.PlayClipAtPoint(shootSound, shootPosition.position);
+    }
     }
 
 }

@@ -11,7 +11,7 @@ public class StormDamage : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(100);
+                enemy.TakeDamage(damage);
                 Debug.Log("Storm hit: " + other.name);
             }
         }

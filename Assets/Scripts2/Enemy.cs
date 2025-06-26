@@ -3,7 +3,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public float health = 10f;
+    [SerializeField] private AudioClip deathSound;
+
+    private float soundCooldown = 3f;
     Animator animator;
+    bool isDead = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,10 +17,20 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0f)
+        if (health <= 0f && !isDead)
         {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
             animator.Play("Death");
+            isDead = true;
         }
+
+        /*if (soundCooldown <= 0f)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            soundCooldown = 3f;
+        }
+
+        soundCooldown -= Time.deltaTime;*/
     }
 
 
