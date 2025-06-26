@@ -4,9 +4,9 @@ public class HumanShoot : MonoBehaviour
 {
     [SerializeField] private float damage = 1.0f;
     [SerializeField] private Transform crossHair;
-    [SerializeField] private Transform shootPosition; // Where bullets would be spawned
+    [SerializeField] private Transform shootPosition; 
     [SerializeField] private ParticleSystem storm;
-    [SerializeField] private ParticleSystem hitEffect; // <-- Dodaj efekat pogotka
+    [SerializeField] private ParticleSystem hitEffect; 
 
     [SerializeField] private float distance = 100f;
     [SerializeField] private AudioClip shootSound;
@@ -41,7 +41,7 @@ public class HumanShoot : MonoBehaviour
 
         if (storm != null)
         {
-            storm.transform.position = shootPosition.position;
+            storm.transform.position = shootPosition.position + shootPosition.forward * 1.0f + shootPosition.up * 1.0f;
             storm.transform.rotation = Quaternion.LookRotation(ray.direction);
             storm.Play();
         }

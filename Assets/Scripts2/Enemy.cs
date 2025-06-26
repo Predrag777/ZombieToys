@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
 
     private float soundCooldown = 3f;
+    private float timeToDie = 3f;
     Animator animator;
     bool isDead = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,6 +23,14 @@ public class Enemy : MonoBehaviour
             AudioSource.PlayClipAtPoint(deathSound, transform.position);
             animator.Play("Death");
             isDead = true;
+        }
+        if (isDead)
+        {
+            if (timeToDie <= 0f)
+            {
+                Destroy(gameObject);
+            }
+            timeToDie -= Time.deltaTime;
         }
 
     }
