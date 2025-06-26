@@ -24,13 +24,6 @@ public class Enemy : MonoBehaviour
             isDead = true;
         }
 
-        /*if (soundCooldown <= 0f)
-        {
-            AudioSource.PlayClipAtPoint(deathSound, transform.position);
-            soundCooldown = 3f;
-        }
-
-        soundCooldown -= Time.deltaTime;*/
     }
 
 
