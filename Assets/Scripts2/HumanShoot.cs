@@ -5,6 +5,7 @@ public class HumanShoot : MonoBehaviour
     [SerializeField] private float damage = 1.0f;
     [SerializeField] private Transform crossHair;
     [SerializeField] private Transform shootPosition; // Where bullets would be spawned
+    [SerializeField] private ParticleSystem storm;
 
     [SerializeField] private float distance = 100f;
 
@@ -30,9 +31,11 @@ public class HumanShoot : MonoBehaviour
         Ray ray = new Ray(shootPosition.position, shootPosition.forward);
         RaycastHit hit;
 
-        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, 1f); // Debug linija
-
-        if (Physics.Raycast(ray, out hit, distance))
+        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, 1f); 
+        storm.transform.position = shootPosition.position;
+        storm.transform.rotation = Quaternion.LookRotation(ray.direction);
+        storm.Play();
+        /*if (Physics.Raycast(ray, out hit, distance))
         {
             Debug.Log("Hit: " + hit.collider.name);
 
@@ -49,7 +52,7 @@ public class HumanShoot : MonoBehaviour
             {
                 Debug.Log("Missed!");
             }
-        }
+        }*/
     }
 
 }
