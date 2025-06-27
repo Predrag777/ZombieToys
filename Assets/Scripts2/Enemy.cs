@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0f && !isDead)
         {
             AudioSource.PlayClipAtPoint(deathSound, transform.position);
-            animator.Play("Death");
+            animator.SetBool("isDead", true);    
             isDead = true;
         }
         if (isDead)

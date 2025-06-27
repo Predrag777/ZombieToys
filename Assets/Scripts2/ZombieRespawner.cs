@@ -9,7 +9,7 @@ public class ZombieRespawner : MonoBehaviour
     [SerializeField] private int numZombies=4;
 
 
-    float coolDown = 3f;
+    public float coolDown = 3f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
