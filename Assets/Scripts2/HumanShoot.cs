@@ -11,6 +11,9 @@ public class HumanShoot : MonoBehaviour
     [SerializeField] private float distance = 100f;
     [SerializeField] private AudioClip shootSound;
 
+    
+    
+
 
     private Gun gun;
 

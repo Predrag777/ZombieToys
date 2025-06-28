@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class StormDamage : MonoBehaviour
 {
+   
     [SerializeField] private float damage = 10f;
 
     private void OnParticleCollision(GameObject other)
@@ -12,7 +13,7 @@ public class StormDamage : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                Debug.Log("Storm hit: " + other.name);
+               
             }
         }
     }
