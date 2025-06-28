@@ -20,7 +20,7 @@ public class EnemyAttack2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemy.health>0f)
+        if (enemy.health > 0f)
             MoveTowards();
     }
 
@@ -32,5 +32,10 @@ public class EnemyAttack2 : MonoBehaviour
 
         float speedMagn = (humanPlayer.position - transform.position).magnitude;
         animator.SetFloat("speed", speedMagn);
+    }
+
+    public void setSpeed(float newSpeed)
+    {
+        this.speed = newSpeed;
     }
 }

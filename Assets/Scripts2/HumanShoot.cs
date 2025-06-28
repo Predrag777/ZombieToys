@@ -11,12 +11,22 @@ public class HumanShoot : MonoBehaviour
     [SerializeField] private float distance = 100f;
     [SerializeField] private AudioClip shootSound;
 
+
+    private Gun gun;
+
     void Start()
     {
+        //gun = GameObject.FindGameObjectWithTag("gun").GetComponent<Gun>();
     }
 
     void Update()
     {
+        /*gun =  GameObject.FindGameObjectWithTag("gun").GetComponent<Gun>();
+        if (gun != null)
+        {
+            shootSound = gun.sound;
+            storm = gun.animation;
+        }*/
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
