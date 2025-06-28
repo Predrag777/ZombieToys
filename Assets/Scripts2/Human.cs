@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class Human : MonoBehaviour
 {
@@ -8,14 +9,21 @@ public class Human : MonoBehaviour
     private bool isDead = false;
 
     private float timeToDamage = 3f;
+    private Image healthbar;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private float targetFill = 1f;  
+    private float fillSpeed = 0.5f;
+
     void Start()
     {
+        GameObject healthbarObj = GameObject.Find("Healthbar");
+        if (healthbarObj != null)
+        {
+            healthbar = healthbarObj.GetComponent<Image>();
+        }
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health <= 0 && !isDead)
@@ -25,7 +33,6 @@ public class Human : MonoBehaviour
             isDead = true;
             animator.SetBool("isDead", true);
 
-            ///Select all enemies and activate idle
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
             for (int i = 0; i < enemies.Length; i++)
             {
@@ -37,29 +44,33 @@ public class Human : MonoBehaviour
             }
         }
 
-    }
-
-
-    void changeWeponPrefab()
-    {
-
+        if (healthbar != null)
+        {
+            float currentFill = healthbar.fillAmount;
+            healthbar.fillAmount = Mathf.MoveTowards(currentFill, targetFill, fillSpeed * Time.deltaTime);
+        }
     }
 
     void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("enemy"))
         {
-            health -= 100;
+            health -= 1;
+            UpdateTargetFill();
         }
     }
-
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
             health -= 100;
+            UpdateTargetFill();
         }
     }
 
+    void UpdateTargetFill()
+    {
+        targetFill = Mathf.Clamp01(health / 100f);
+    }
 }

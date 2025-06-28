@@ -30,15 +30,13 @@ public class Enemy : MonoBehaviour
             isDead = true;
             kills = int.Parse(killsTxt.text);
             kills++;
-            Debug.Log("Mrtav");
             killsTxt.text = kills + "";
         }
         if (isDead)
         {
             if (timeToDie <= 0f)
-            {
                 Destroy(gameObject);
-            }
+            
             timeToDie -= Time.deltaTime;
         }
 
